@@ -1,0 +1,34 @@
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+with open("genome_sequence.txt", "r") as file:
+    genome_sequence = list(file.read().strip())  
+
+
+genome_length = len(genome_sequence)
+
+
+t = np.linspace(0, 4 * np.pi, genome_length)  
+x = np.cos(t)
+y = np.sin(t)
+z = np.linspace(0, 5, genome_length)  
+
+
+color_map = {'A': 'red', 'T': 'blue', 'G': 'green', 'C': 'yellow'}
+colors = [color_map.get(base, 'black') for base in genome_sequence] 
+
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+
+ax.scatter(x, y, z, c=colors, s=50)  
+
+ax.set_title("3D Genome Visualization on a Helix")
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+
+# Display the plot
+plt.show()
